@@ -1,0 +1,214 @@
+{
+  "version": "1.0.0",
+  "population": "Adults at rest (educational demo). Not validated for children, pregnancy, athletes, or people with known conditions.",
+  "disclaimer": "These rules are simplified, educational thresholds drawn from public general-audience guidance. They are not a diagnostic tool, have not been clinically validated in this software, and must not be used for medical decisions.",
+  "rules": [
+    {
+      "id": "hr_high_warning",
+      "group": "hr_high",
+      "metric": "heart_rate",
+      "match": "any",
+      "conditions": [{ "field": "value", "op": ">", "threshold": 100 }],
+      "severity": "warning",
+      "message": "Resting heart rate above 100 bpm",
+      "explanation": "The reading is above the commonly cited adult resting range of 60–100 bpm. Exercise, caffeine, stress, fever, or a measurement taken while active can all raise heart rate.",
+      "source": "American Heart Association — 'All About Heart Rate (Pulse)': normal adult resting heart rate 60–100 bpm.",
+      "limitations": "Only meaningful for resting measurements. Does not consider activity, medication, or individual baselines."
+    },
+    {
+      "id": "hr_high_critical",
+      "group": "hr_high",
+      "metric": "heart_rate",
+      "match": "any",
+      "conditions": [{ "field": "value", "op": ">", "threshold": 130 }],
+      "severity": "critical",
+      "message": "Resting heart rate well above 100 bpm",
+      "explanation": "The reading is far above the commonly cited adult resting range of 60–100 bpm. The 130 bpm escalation level is a project-chosen demonstration threshold.",
+      "source": "Base range: American Heart Association (60–100 bpm). 130 bpm escalation level: project-chosen demonstration threshold.",
+      "limitations": "Escalation level is not a clinical standard. Exercise readings will trigger it."
+    },
+    {
+      "id": "hr_low_warning",
+      "group": "hr_low",
+      "metric": "heart_rate",
+      "match": "any",
+      "conditions": [{ "field": "value", "op": "<", "threshold": 50 }],
+      "severity": "warning",
+      "message": "Resting heart rate below 50 bpm",
+      "explanation": "The reading is below the commonly cited adult resting range. Well-trained athletes and people during sleep often have lower heart rates without any problem.",
+      "source": "American Heart Association — normal adult resting heart rate 60–100 bpm; 50 bpm used here to reduce false alarms (project choice).",
+      "limitations": "Frequently normal for athletes. Does not consider medication (e.g. beta-blockers)."
+    },
+    {
+      "id": "hr_low_critical",
+      "group": "hr_low",
+      "metric": "heart_rate",
+      "match": "any",
+      "conditions": [{ "field": "value", "op": "<", "threshold": 40 }],
+      "severity": "critical",
+      "message": "Resting heart rate below 40 bpm",
+      "explanation": "The reading is far below the commonly cited adult resting range. The 40 bpm level is a project-chosen demonstration threshold.",
+      "source": "Project-chosen demonstration threshold relative to AHA 60–100 bpm range.",
+      "limitations": "Not a clinical standard. Device or entry errors are common at extreme values."
+    },
+    {
+      "id": "spo2_low_warning",
+      "group": "spo2_low",
+      "metric": "spo2",
+      "match": "any",
+      "conditions": [{ "field": "value", "op": "<=", "threshold": 94 }],
+      "severity": "warning",
+      "message": "Oxygen saturation at or below 94%",
+      "explanation": "Typical pulse-oximeter readings for healthy adults are 95–100%. Cold fingers, nail polish, movement, and skin pigmentation can affect accuracy.",
+      "source": "NHS — 'How to use a pulse oximeter at home': readings of 93–94% warrant seeking advice; typical healthy range 95–100%.",
+      "limitations": "Consumer pulse oximeters have known accuracy limits, including reduced accuracy on darker skin tones (FDA safety communication, 2021)."
+    },
+    {
+      "id": "spo2_low_critical",
+      "group": "spo2_low",
+      "metric": "spo2",
+      "match": "any",
+      "conditions": [{ "field": "value", "op": "<=", "threshold": 92 }],
+      "severity": "critical",
+      "message": "Oxygen saturation at or below 92%",
+      "explanation": "Public guidance treats 92% or lower on a home pulse oximeter as a level that needs urgent attention.",
+      "source": "NHS — 'How to use a pulse oximeter at home': 92% or below needs urgent attention.",
+      "limitations": "Some people with chronic lung conditions have different personal targets set by their clinicians."
+    },
+    {
+      "id": "temp_high_warning",
+      "group": "temp_high",
+      "metric": "temperature",
+      "match": "any",
+      "conditions": [{ "field": "value", "op": ">=", "threshold": 38.0 }],
+      "severity": "warning",
+      "message": "Temperature at or above 38.0 °C (fever range)",
+      "explanation": "A temperature of 38.0 °C (100.4 °F) or higher is the common public-health definition of a fever.",
+      "source": "CDC — fever defined as a measured temperature of 100.4 °F (38 °C) or greater.",
+      "limitations": "Measurement site (oral, ear, forehead) changes readings by up to ~0.5 °C."
+    },
+    {
+      "id": "temp_high_critical",
+      "group": "temp_high",
+      "metric": "temperature",
+      "match": "any",
+      "conditions": [{ "field": "value", "op": ">=", "threshold": 39.4 }],
+      "severity": "critical",
+      "message": "Temperature at or above 39.4 °C (high fever)",
+      "explanation": "General public guidance suggests adults contact a health professional for a temperature of 103 °F (39.4 °C) or higher.",
+      "source": "Mayo Clinic — 'Fever: First aid': adults should call a provider at 103 °F (39.4 °C) or higher.",
+      "limitations": "Does not consider symptoms, duration, or age-specific guidance."
+    },
+    {
+      "id": "temp_low_warning",
+      "group": "temp_low",
+      "metric": "temperature",
+      "match": "any",
+      "conditions": [{ "field": "value", "op": "<", "threshold": 35.0 }],
+      "severity": "warning",
+      "message": "Temperature below 35.0 °C",
+      "explanation": "A body temperature below 35 °C (95 °F) is the common definition of hypothermia. Low readings are also often caused by measurement error.",
+      "source": "CDC / Mayo Clinic — hypothermia defined as body temperature below 95 °F (35 °C).",
+      "limitations": "Forehead and ear thermometers frequently under-read in cold environments."
+    },
+    {
+      "id": "bp_high_info",
+      "group": "bp_high",
+      "metric": "blood_pressure",
+      "match": "any",
+      "conditions": [
+        { "field": "value", "op": ">=", "threshold": 130 },
+        { "field": "value2", "op": ">=", "threshold": 80 }
+      ],
+      "severity": "info",
+      "message": "Blood pressure in the Stage 1 range (systolic 130–139 or diastolic 80–89 mmHg)",
+      "explanation": "This range is labelled 'Stage 1' in the ACC/AHA blood pressure categories. A single reading is not enough to categorize anyone; categories are based on repeated measurements.",
+      "source": "2017 ACC/AHA Guideline for High Blood Pressure in Adults — blood pressure categories.",
+      "limitations": "Single home readings vary with posture, cuff size, and recent activity."
+    },
+    {
+      "id": "bp_high_warning",
+      "group": "bp_high",
+      "metric": "blood_pressure",
+      "match": "any",
+      "conditions": [
+        { "field": "value", "op": ">=", "threshold": 140 },
+        { "field": "value2", "op": ">=", "threshold": 90 }
+      ],
+      "severity": "warning",
+      "message": "Blood pressure at or above 140/90 mmHg",
+      "explanation": "This range is labelled 'Stage 2' in the ACC/AHA blood pressure categories. Repeated readings in this range are worth discussing with a health professional.",
+      "source": "2017 ACC/AHA Guideline for High Blood Pressure in Adults — blood pressure categories.",
+      "limitations": "Single home readings vary; white-coat and masked effects exist."
+    },
+    {
+      "id": "bp_high_critical",
+      "group": "bp_high",
+      "metric": "blood_pressure",
+      "match": "any",
+      "conditions": [
+        { "field": "value", "op": ">", "threshold": 180 },
+        { "field": "value2", "op": ">", "threshold": 120 }
+      ],
+      "severity": "critical",
+      "message": "Blood pressure above 180/120 mmHg",
+      "explanation": "The American Heart Association describes readings above 180/120 mmHg as a 'hypertensive crisis' level and advises re-measuring and seeking care, especially if symptoms are present.",
+      "source": "American Heart Association — 'Understanding Blood Pressure Readings' (hypertensive crisis > 180 and/or > 120).",
+      "limitations": "Re-measurement after resting is recommended before interpreting a single value."
+    },
+    {
+      "id": "bp_low_warning",
+      "group": "bp_low",
+      "metric": "blood_pressure",
+      "match": "any",
+      "conditions": [
+        { "field": "value", "op": "<", "threshold": 90 },
+        { "field": "value2", "op": "<", "threshold": 60 }
+      ],
+      "severity": "warning",
+      "message": "Blood pressure below 90/60 mmHg",
+      "explanation": "Readings below 90/60 mmHg are commonly described as low blood pressure. Many people have naturally low blood pressure without symptoms.",
+      "source": "American Heart Association / NHS — low blood pressure commonly described as below 90/60 mmHg.",
+      "limitations": "Often normal for some individuals; symptoms matter more than the number alone."
+    },
+    {
+      "id": "sleep_short_info",
+      "group": "sleep_short",
+      "metric": "sleep",
+      "match": "any",
+      "conditions": [{ "field": "value", "op": "<", "threshold": 7 }],
+      "severity": "info",
+      "message": "Sleep under 7 hours",
+      "explanation": "Public-health guidance recommends at least 7 hours of sleep per night for adults.",
+      "source": "CDC / American Academy of Sleep Medicine — adults 18–60 should sleep 7 or more hours per night.",
+      "limitations": "Self-reported or tracker-estimated sleep is approximate."
+    },
+    {
+      "id": "sleep_short_warning",
+      "group": "sleep_short",
+      "metric": "sleep",
+      "match": "any",
+      "conditions": [{ "field": "value", "op": "<", "threshold": 5 }],
+      "severity": "warning",
+      "message": "Sleep under 5 hours",
+      "explanation": "Well below the recommended 7+ hours for adults. The 5-hour level is a project-chosen demonstration threshold.",
+      "source": "Base recommendation: CDC / AASM (7+ hours). 5-hour level: project-chosen demonstration threshold.",
+      "limitations": "Escalation level is not a clinical standard."
+    }
+  ],
+  "trend_rules": [
+    {
+      "id": "weight_change_7d",
+      "group": "weight_change",
+      "metric": "weight",
+      "type": "abs_change_within_days",
+      "days": 7,
+      "threshold": 2.0,
+      "severity": "info",
+      "message": "Weight changed by 2 kg or more within 7 days",
+      "explanation": "A noticeable short-term weight change. Hydration, clothing, scale differences, and time of day commonly cause swings of 1–2 kg.",
+      "source": "Project-chosen demonstration threshold (general advice that unexplained rapid weight change is worth discussing with a professional).",
+      "limitations": "Not a clinical standard; does not distinguish intended from unintended change."
+    }
+  ]
+}

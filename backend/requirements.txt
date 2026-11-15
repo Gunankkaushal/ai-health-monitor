@@ -1,0 +1,15 @@
+# Pinned, verified together on Python 3.12 (Nov 2026)
+mcp==2.3.0
+groq==1.7.0
+fastapi==0.162.5
+uvicorn==0.54.0
+sqlalchemy==2.1.8
+pydantic==2.14.3
+python-dotenv==1.2.4
+jsonschema==4.26.0
+anyio==4.16.0
+
+# Testing
+pytest==9.2.0
+pytest-asyncio==1.4.1.post1
+httpx==0.28.1
